@@ -8,7 +8,7 @@ if( isset( $_POST[ 'Submit' ] ) ) {
 
 	switch ($_DVWA['SQLI_DB']) {
 		case MYSQL:
-			$query  = "SELECT first_name, last_name FROM users WHERE user_id = $id;#test";
+			$query  = "SELECT first_name, last_name FROM users WHERE user_id = $id;#test2";
 			$result = mysqli_query($GLOBALS["___mysqli_ston"], $query) or die( '<pre>' . mysqli_error($GLOBALS["___mysqli_ston"]) . '</pre>' );
 
 			// Get results
