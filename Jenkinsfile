@@ -24,7 +24,7 @@ pipeline {
         stage('Scan the code using SAST tool') {
             steps {
                 echo 'Scanning the code..'
-                sh 'ssh ubuntu-jenkins@192.168.1.204 docker run --rm   -v "/home/ubuntu-jenkins/Desktop/app-build/DVWA:/src" -v "/home/ubuntu-jenkins/semgrep-rules:/rules:ro" semgrep/semgrep semgrep ci --config /rules --metrics=off '
+                sh 'ssh ubuntu-jenkins@192.168.1.204 /home/ubuntu-jenkins/Desktop/run_semgrep.sh'
             }
         }
          stage('Build the Application') {
