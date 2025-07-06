@@ -18,7 +18,7 @@ if( isset( $_POST[ 'Submit' ] ) ) {
 				$last  = $row["last_name"];
 
 				// Feedback for end user
-				$html .= "<pre>ID: {$id}<br />First name: {$first}<br />Surname: {$last}</pre>";
+				$html .= "<pre>ID: {$id}<br />First name: {$first}<br />Surname (TEST): {$last}</pre>";
 			}
 			break;
 		case SQLITE:
