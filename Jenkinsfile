@@ -9,12 +9,6 @@ pipeline {
                 sh 'git clone https://github.com/vlknygt/DVWA.git'
             }
         }
-        stage('Scan the code using SAST tool') {
-            steps {
-                echo 'Scanning the code..'
-                sh 'ssh ubuntu-jenkins@192.168.1.204 docker run --rm   -v "/home/ubuntu-jenkins/Desktop/app-build/DVWA:/src" -v "/home/ubuntu-jenkins/semgrep-rules:/rules:ro" semgrep/semgrep semgrep ci --config /rules --metrics=off '
-            }
-        }
         stage('Send App to Local VM') {
             steps {
                 echo 'Zip DVWA Folder'
@@ -25,6 +19,12 @@ pipeline {
                 sh 'scp DVWA.zip ubuntu-jenkins@192.168.1.204:/home/ubuntu-jenkins/Desktop/app-build'
                 sh 'ssh ubuntu-jenkins@192.168.1.204 rm -rf /home/ubuntu-jenkins/Desktop/app-build/DVWA'
                 sh 'ssh ubuntu-jenkins@192.168.1.204 unzip -o /home/ubuntu-jenkins/Desktop/app-build/DVWA.zip -d /home/ubuntu-jenkins/Desktop/app-build/'
+            }
+        }
+        stage('Scan the code using SAST tool') {
+            steps {
+                echo 'Scanning the code..'
+                sh 'ssh ubuntu-jenkins@192.168.1.204 docker run --rm   -v "/home/ubuntu-jenkins/Desktop/app-build/DVWA:/src" -v "/home/ubuntu-jenkins/semgrep-rules:/rules:ro" semgrep/semgrep semgrep ci --config /rules --metrics=off '
             }
         }
          stage('Build the Application') {
