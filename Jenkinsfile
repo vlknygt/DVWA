@@ -21,7 +21,15 @@ pipeline {
                 sh 'ssh ubuntu-jenkins@192.168.1.204 unzip -o /home/ubuntu-jenkins/Desktop/app-build/DVWA.zip -d /home/ubuntu-jenkins/Desktop/app-build/'
             }
         }
-        stage('Scan the code using SAST tool') {
+        stage('Scan the code using DAST tool (OWASP ZAP)') {
+            steps {
+                echo 'Starting ZAP...'
+                sh 'ssh ubuntu-jenkins@192.168.1.204 rm -rf /home/ubuntu-jenkins/Desktop/zap-report/*'
+                sh 'ssh ubuntu-jenkins@192.168.1.204 zap.sh  -cmd -autorun zaptest.yaml'
+                echo 'ZAP Test Ended! Report saved!'
+            }
+        }
+        stage('Scan the code using SAST tool (Semgrep)') {
             steps {
                 echo 'Scanning the code..'
                 sh 'ssh ubuntu-jenkins@192.168.1.204 /home/ubuntu-jenkins/Desktop/run_semgrep.sh'
