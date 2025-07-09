@@ -24,8 +24,7 @@ pipeline {
         stage('Scan the code using DAST tool (OWASP ZAP)') {
             steps {
                 echo 'Starting ZAP...'
-                sh 'ssh ubuntu-jenkins@192.168.1.204 rm -rf /home/ubuntu-jenkins/Desktop/zap-report/*'
-                sh 'ssh ubuntu-jenkins@192.168.1.204 zap.sh  -cmd -autorun zaptest.yaml'
+                sh 'ssh ubuntu-jenkins@192.168.1.204 /home/ubuntu-jenkinks/Desktop/zaptest.sh'
                 echo 'ZAP Test Ended! Report saved!'
             }
         }
