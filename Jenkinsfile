@@ -30,9 +30,7 @@ pipeline {
         }
         stage('Detecting False Positive Findings with AI') {
             steps {
-                sh 'ssh ubuntu-jenkins@192.168.1.204 cp /home/ubuntu-jenkins/Desktop/zap-report/* /home/ubuntu-jenkins/Desktop/ai-report/zap_json.json'
-                sh 'ssh ubuntu-jenkins@192.168.1.204 rm -rf /home/ubuntu-jenkins/Desktop/ai-report/json-reports/*'
-                sh 'ssh ubuntu-jenkins@192.168.1.204 python3 false_positive_scan.py'
+                sh 'ssh ubuntu-jenkins@192.168.1.204 /home/ubuntu-jenkins/Desktop/ai-report/run_ai_tests.sh'
                 echo 'Report with true positive findings saved!'
             }
         }
