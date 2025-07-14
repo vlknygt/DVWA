@@ -28,6 +28,14 @@ pipeline {
                 echo 'ZAP Test Ended! Report saved!'
             }
         }
+        stage('Detecting False Positive Findings with AI') {
+            steps {
+                sh 'ssh ubuntu-jenkins@192.168.1.204 cp /home/ubuntu-jenkins/Desktop/zap-report/* /home/ubuntu-jenkins/Desktop/ai-report/zap_json.json'
+                sh 'ssh ubuntu-jenkins@192.168.1.204 rm -rf /home/ubuntu-jenkins/Desktop/ai-report/json-reports/*'
+                sh 'ssh ubuntu-jenkins@192.168.1.204 python3 false_positive_scan.py'
+                echo 'Report with true positive findings saved!'
+            }
+        }
         stage('Scan the code using SAST tool (Semgrep)') {
             steps {
                 echo 'Scanning the code..'
