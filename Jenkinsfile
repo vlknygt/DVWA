@@ -59,8 +59,8 @@ pipeline {
                 sh 'ssh ubuntu-jenkins@192.168.1.204 /home/ubuntu-jenkins/Desktop/send-image.sh'
                 
                 echo 'Run Application on Application VM'
-                sh 'ssh volkan@192.168.1.202 dockerstop'
-                sh 'ssh volkan@192.168.1.202 docker compose -f /home/volkan/Desktop/docker-compose.yaml up -d'
+                sh 'ssh volkan@192.168.1.200 dockerstop'
+                sh 'ssh volkan@192.168.1.200 docker compose -f /home/volkan/Desktop/docker-compose.yaml up -d'
             }
         }
     }
