@@ -36,7 +36,7 @@ pipeline {
         }
         stage('Opening Github Issues for DAST Scan Results') {
             steps {
-                sh 'ssh ubuntu-jenkins@192.168.1.204 python3 /home/ubuntu-jenkins/Desktop/ai-report/create_issues.py'
+                sh 'ssh ubuntu-jenkins@192.168.1.204 python3 -u /home/ubuntu-jenkins/Desktop/ai-report/create_issues.py'
                 echo 'Github Issues created on the repository for DAST Scan Results'
             }
         }
