@@ -40,6 +40,12 @@ pipeline {
                 echo 'Github Issues created on the repository for DAST Scan Results'
             }
         }
+        stage('Software Component Analysis (Synk)') {
+            steps {
+                sh 'ssh ubuntu-jenkins@192.168.1.204 python3 -u /home/ubuntu-jenkins/Desktop/ai-report/create_issues.py'
+                echo 'SCA Completed and Github Issues Created If a Vulnerability Exists!'
+            }
+        }
         stage('Scan the code using SAST tool (Semgrep)') {
             steps {
                 echo 'Scanning the code..'
