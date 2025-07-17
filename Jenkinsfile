@@ -47,10 +47,24 @@ pipeline {
             }
         }
         stage('Scan the code using SAST tool (Semgrep)') {
-            steps {
-                echo 'Scanning the code..'
+          steps {
+            script {
+              boolean vuln_found = false
+              try {
+                echo 'Scanning the code...'
                 sh 'ssh ubuntu-jenkins@192.168.1.204 /home/ubuntu-jenkins/Desktop/run_semgrep.sh'
+                echo 'Semgrep SAST Scan Completed. There is not any finding!'
+              } catch (Exception err) {
+                echo 'Semgrep found security issues on the Code! Saving the findings!'
+                sh 'ssh ubuntu-jenkins@192.168.1.204 python3 -u /home/ubuntu-jenkins/Desktop/create_issues_semgrep.py'
+                vuln_found = true
+              }
+
+              if(vuln_found){
+                error('Semgrep detected security issue on the code!')
+              }
             }
+          }
         }
          stage('Build the Application') {
             steps {
