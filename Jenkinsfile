@@ -42,7 +42,7 @@ pipeline {
         }
         stage('Software Component Analysis (Synk)') {
             steps {
-                sh 'ssh ubuntu-jenkins@192.168.1.204 python3 -u /home/ubuntu-jenkins/Desktop/ai-report/create_issues.py'
+                sh 'ssh ubuntu-jenkins@192.168.1.204 /home/ubuntu-jenkins/Desktop/snyk-sca/run_snyk.sh'
                 echo 'SCA Completed and Github Issues Created If a Vulnerability Exists!'
             }
         }
