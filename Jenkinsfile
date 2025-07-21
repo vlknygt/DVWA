@@ -52,12 +52,6 @@ pipeline {
                 echo 'Scan the code using SAST tool (Semgrep) - Non Blocking Rules - Completed!'
             }
         }
-         stage('Creating Github Issues for Non Blocking Findings') {
-            steps {
-                sh 'ssh ubuntu-jenkins@192.168.1.204 python3 -u /home/ubuntu-jenkins/Desktop/semgrep/create_issues_semgrep_non_blocking.py'
-                echo 'Creating Github Issues for Non Blocking Findings - Completed!'
-            }
-        }
         stage('Scan the code using SAST tool (Semgrep) - Blocking Rules') {
           steps {
             script {
@@ -77,6 +71,12 @@ pipeline {
               }
             }
           }
+        }
+         stage('Creating Github Issues for Non Blocking Findings') {
+            steps {
+                sh 'ssh ubuntu-jenkins@192.168.1.204 python3 -u /home/ubuntu-jenkins/Desktop/semgrep/create_issues_semgrep_non_blocking.py'
+                echo 'Creating Github Issues for Non Blocking Findings - Completed!'
+            }
         }
          stage('Build the Application') {
             steps {
