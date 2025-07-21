@@ -54,7 +54,7 @@ pipeline {
         }
          stage('Creating Github Issues for Non Blocking Findings') {
             steps {
-                sh 'ssh ubuntu-jenkins@192.168.1.204 python -u /home/ubuntu-jenkins/Desktop/semgrep/create_issues_semgrep_non_blocking.py'
+                sh 'ssh ubuntu-jenkins@192.168.1.204 python3 -u /home/ubuntu-jenkins/Desktop/semgrep/create_issues_semgrep_non_blocking.py'
                 echo 'Creating Github Issues for Non Blocking Findings - Completed!'
             }
         }
