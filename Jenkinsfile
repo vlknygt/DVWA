@@ -46,7 +46,13 @@ pipeline {
                 echo 'SCA Completed and Github Issues Created If a Vulnerability Exists!'
             }
         }
-        stage('Scan the code using SAST tool (Semgrep)') {
+         stage('Scan the code using SAST tool (Semgrep) - Non Blocking Rules') {
+            steps {
+                sh 'ssh ubuntu-jenkins@192.168.1.204 /home/ubuntu-jenkins/Desktop/semgrep/run_semgrep_non_blocking.sh'
+                echo 'Scan the code using SAST tool (Semgrep) - Non Blocking Rules - Completed!'
+            }
+        }
+        stage('Scan the code using SAST tool (Semgrep) - Blocking Rules') {
           steps {
             script {
               boolean vuln_found = false
