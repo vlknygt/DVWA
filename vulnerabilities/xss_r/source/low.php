@@ -6,7 +6,7 @@ header ("X-XSS-Protection: 0");
 if( array_key_exists( "name", $_GET ) && $_GET[ 'name' ] != NULL ) {//test2222
 	// Feedback for end user
 	// Vulnerable?
-	$html .= '<pre>Hello ' . $_GET[ 'name' ] . '</pre>';//test44444
+	$html .= '<pre>Hello ' . $_GET[ 'name' ] . '</pre>';//test555555
 }
 
 ?>
